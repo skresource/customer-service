@@ -1,0 +1,245 @@
+<common-header></common-header>
+
+
+ <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-8 col-lg-8">
+			<h4>Welcome to dashboard</h4>
+		</div>		
+	</div>
+	
+	<hr>
+	
+	<div class="alert alert-info" *ngIf="updateInfoShow">Profile update successfully</div>
+	
+	<div class="row" >
+		<div class="col-lg-2 col-md-2 col-sm-2 col-3 border-r">
+			<div class="avatar-wrapper">
+				<a class="change-avtr-link" href="javascript:void(0)" data-toggle="modal" data-target="#myModal"><small>Change Picture </small></a> 
+				<span class="avatar"><i class="fa fa-user-circle" aria-hidden="true"></i></span>
+			</div>
+		</div>
+		<!-- Profile Detaisl start -->
+		<div class="col-lg-10 col-md-10 col-sm-10 col-9" *ngIf="isViewOnly; else editProfile"> 
+			
+			<div class="row">
+				<div class="col-lg-2 col-md-3 col-sm-6">
+					<strong>Full Name:</strong>
+				</div>
+				<div class="col-lg-10 col-md-9 col-sm-6">
+					<div class="profile-row">{{currentUser.fullname}}</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-lg-2 col-md-3 col-sm-6">
+					<strong>Email:</strong>
+				</div>
+				<div class="col-lg-10 col-md-9 col-sm-6">
+					<div class="profile-row">{{currentUser.email}}</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-lg-2 col-md-3 col-sm-6">
+					<strong>Address:</strong>
+				</div>
+				<div class="col-lg-10 col-md-9 col-sm-6">
+					<div class="profile-row">{{currentUser.address1}}&nbsp;</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-lg-2 col-md-3 col-sm-6">
+					<strong>Contact No:</strong>
+				</div>
+				<div class="col-lg-10 col-md-9 col-sm-6">
+					<div class="profile-row">{{currentUser.contact}}&nbsp;</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-lg-2 col-md-3 col-sm-6">
+					<strong>Gender:</strong>
+				</div>
+				<div class="col-lg-10 col-md-9 col-sm-6">
+					<div class="profile-row">{{currentUser.gender}}&nbsp;</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-lg-2 col-md-3 col-sm-6">
+					<strong>State:</strong>
+				</div>
+				<div class="col-lg-10 col-md-9 col-sm-6">
+					<div class="profile-row">{{currentUser.state}}&nbsp;</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-lg-2 col-md-3 col-sm-6">
+					<strong>Country:</strong>
+				</div>
+				<div class="col-lg-10 col-md-9 col-sm-6">
+					<div class="profile-row">{{currentUser.country}}&nbsp;</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				 
+				<div class="col-lg-10 col-md-9 col-sm-6">
+					<div class="profile-row"><a href="">Change Your Password</a></div>
+				</div>
+			</div>			 
+		</div>
+		<!-- Profile Details end -->
+		
+		<!-- Edit Profile start -->
+		<ng-template #editProfile>
+			
+			<div class="col-lg-10 col-md-10 col-sm-10 col-9"> 
+				<form (ngSubmit)="udpateProfile(editForm)" novalidate #editForm="ngForm" action="" method="PUT">					 
+					<div class="row form-group">
+						<div class="col-lg-2 col-md-3 col-sm-6">
+							<strong>Full Name:</strong>
+						</div>
+						<div class="col-lg-6 col-md-9 col-sm-6">
+							 
+							<input type="text" class="form-control" id="fullname" name="fullname" placeholder="Your full name"
+							minlength="3" value="{{currentUser.fullname}}" [(ngModel)]="currentUser.fullname" required #fullname="ngModel" >
+							 
+							<div class="help-block" *ngIf="((fullname.touched || fullname.dirty || editForm.submitted )  && fullname.errors )" >
+								<div class="error" *ngIf="fullname.errors.required  ">
+									Name is required
+								</div>
+								<div class="error" *ngIf="fullname.errors.minlength ">
+									Minimum name length is three (3) characters
+								</div> 
+							</div>  
+						</div>
+					</div>
+					
+					<div class="row form-group">
+						<div class="col-lg-2 col-md-3 col-sm-6">
+							<strong>Email:</strong>
+						</div>
+						<div class="col-lg-6 col-md-9 col-sm-6"> 
+							<input type="text" class="form-control"  placeholder="email" value="{{currentUser.email}}" readonly>
+						</div>
+					</div>
+					
+					<div class="row form-group">
+						<div class="col-lg-2 col-md-3 col-sm-6">
+							<strong>Address:</strong>
+						</div>
+						<div class="col-lg-6 col-md-9 col-sm-6">
+							<textarea type="text" class="form-control" name="address1" id="address1" placeholder="Address 1" [(ngModel)]="currentUser.address1"></textarea>							 
+						</div>
+					</div>
+					
+					<div class="row form-group">
+						<div class="col-lg-2 col-md-3 col-sm-6">
+							<strong>Contact No:</strong>
+						</div>
+						<div class="col-lg-6 col-md-9 col-sm-6">
+							<input type="text" class="form-control col-md-6 col-lg-6" id="contact" name="contact" placeholder="Your contact number" [(ngModel)]="currentUser.contact">
+						</div>
+					</div>
+					
+					<div class="row form-group">
+						<div class="col-lg-2 col-md-3 col-sm-6">
+							<strong>Gender:</strong>
+						</div>
+						<div class="col-lg-6 col-md-9 col-sm-6">
+							{{currentUser.gender}} 
+						</div>
+					</div>
+					
+					<div class="row form-group">
+						<div class="col-lg-2 col-md-3 col-sm-6">
+							<strong>State:</strong>
+						</div>
+						<div class="col-lg-6 col-md-9 col-sm-6">
+							 
+							<input type="text" class="form-control" id="state" name="state" placeholder="Your state name"
+							minlength="3" value="{{currentUser.state}}" [(ngModel)]="currentUser.state" required #state="ngModel" >
+						 
+							<div class="help-block" *ngIf="((state.touched || state.dirty || editForm.submitted )  && state.errors )" >
+								<div class="error" *ngIf="state.errors.required  ">
+									Name of the state is required
+								</div>
+								<div class="error" *ngIf="state.errors.minlength ">
+									Minimum state name length is three (3) characters
+								</div> 
+							</div> 
+						</div>
+					</div>
+					
+					<div class="row form-group">
+						<div class="col-lg-2 col-md-3 col-sm-6">
+							<strong>Country:</strong>
+						</div>
+						<div class="col-lg-6 col-md-9 col-sm-6">
+							 
+							<input type="text" class="form-control" id="country" name="country" placeholder="Your country name"
+							minlength="3" value="{{currentUser.country}}" [(ngModel)]="currentUser.country" required #country="ngModel" >
+							 
+							<div class="help-block" *ngIf="((country.touched || country.dirty || editForm.submitted )  && country.errors )" >
+								<div class="error" *ngIf="country.errors.required  ">
+									Name of the country is required
+								</div>
+								<div class="error" *ngIf="country.errors.minlength ">
+									Minimum country name length is three (3) characters
+								</div> 
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">						 
+						<div class="col-lg-8 col-md-9 col-sm-6 text-right">
+							<button type="submit" class="btn btn-primary" [disabled]="loading">Update</button> 
+							&nbsp;
+							 <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+							&nbsp; 
+							<a type="button" class="btn btn-primary btn-link" [routerLink]="['/dashboard']" >Cancel</a> 
+						</div>
+					</div>
+					
+					<div class="row">						 
+						<div class="col-lg-10 col-md-9 col-sm-6">
+							<div class="profile-row"><a href="">Change Your Password</a></div>
+						</div>
+					</div>
+					
+					
+					
+				</form>					
+			</div>
+			
+		</ng-template>		
+		<!-- Profile Details end -->		
+	</div>	
+</div>
+<!-- Modal -->
+<div id="myModal" class="modal  fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+		<h4 class="modal-title">Change your profile image</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        
+      </div>
+      <div class="modal-body">
+        <p>
+			<input type="file" name="profile-img" (change)="selectFile($event)">
+		</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

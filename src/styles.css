@@ -1,0 +1,79 @@
+/* You can add global styles to this file, and also import other style files */
+
+.top-menu{
+	padding-bottom:40px;
+	margin-bottom:20px;
+}
+
+label{
+	font-weight:500;
+}
+
+input:invalid {
+  border: 1px solid red;
+}
+
+
+.help-block{
+	color:red;
+	font-size:14px;
+}
+
+.top-main-menu li.active{
+	background:#b7b6b6;	 
+	border-radius:3px;
+}
+
+.profile-name{
+	display:inline-block; 
+	width: 135px;
+	white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+	vertical-align:middle;
+	text-align:right;
+	padding-right:4px;
+}
+
+.top-profile-menu .dropdown-toggle::after{
+	vertical-align: middle;
+}
+
+.profile-row{
+	margin-bottom:10px;
+}
+
+.avatar-wrapper{
+	position:relative;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+     border: 1px solid;
+    max-width: 140px;
+    max-height: 140px;
+}
+
+.avatar{
+	font-size: 4.85rem; 
+    vertical-align: middle;     
+    color: #b7b8b9; 
+}
+
+.change-avtr-link{
+	position: absolute;
+    display: inline-block;     
+    width: 100%;
+    left: 0;
+    text-align: center;
+    padding: 0 5px;
+    top: 0;
+    color: #363636;
+    text-decoration: underline;
+}
+
+
+.border-r{
+	border-right: 2px solid #eee;
+	padding-right:8px;
+	
+}

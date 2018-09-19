@@ -1,0 +1,37 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "employee": [
+    {
+      "id": 1,
+      "fullname": "John Doe",
+      "email": "johndoe@mail.com",
+      "password": "test123",
+      "address1": "Sample address 1",
+      "address2": "Sample address 2",
+      "contact": "9831098310"
+    },
+    {
+      "id": 5,
+      "fullname": "Linda Lorris ",
+      "email": "linda@mail.com",
+      "password": "111111",
+      "address1": "test address",
+      "state": "California",
+      "country": "USA",
+      "contact": "9831098310"
+    }
+  ]
+}

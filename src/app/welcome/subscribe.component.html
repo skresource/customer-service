@@ -1,0 +1,55 @@
+<div class="form-container container">
+<div *ngIf="isSubmitted">
+{{submitDetails.name}} <Br>
+{{submitDetails.account.email}} 
+</div>
+	<div class="row">
+		<div class="col-lg-8 col-md-8"> 
+		<form novalidate (ngSubmit)="onSubmit(user)" [formGroup]="user">
+			
+			<div class="row form-group">
+				<div class="col-lg-4 col-md-4">
+					Name
+				</div>
+				<div class="col-lg-8 col-md-8">
+					<input type="text" class="form-control" formControlName="name">
+					<div class="error" *ngIf="user.get('name').touched && user.get('name').hasError('required')">
+						Name is required
+					</div>
+					<div class="error" *ngIf="user.get('name').touched && user.get('name').hasError('minlength')">
+						Min length must be 2
+					</div>
+				</div>
+			</div>
+			<div formGroupName="account">
+			<div class="row form-group" >
+				<div class="col-lg-4 col-md-4">
+					Email
+				</div>
+				<div class="col-lg-8 col-md-8">
+					<input type="text" class="form-control" formControlName="email">
+					<div class="error" *ngIf="user.get('account').get('email').touched && user.get('account').get('email').hasError('required')">
+						Email is required
+					</div>
+					 
+				</div>
+			</div>
+			
+			<div class="row form-group" >
+				<div class="col-lg-4 col-md-4">
+					Confirm Email
+				</div>
+				<div class="col-lg-8 col-md-8">
+					<input type="text" class="form-control" formControlName="confirm">
+					<div class="error" *ngIf="user.get('account').get('confirm').touched && user.get('account').get('confirm').hasError('required')">
+						Confirm Email is required
+					</div>
+					 
+				</div>
+			</div>
+			</div>
+			 <button type="submit" [disabled]="user.invalid">Subscribe</button>
+		</form>
+		</div>
+	</div>
+</div>
